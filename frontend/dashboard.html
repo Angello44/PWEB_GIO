@@ -1,0 +1,3465 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <title>WORKSNESIA</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="CSS/dashboard.css" />
+  </head>
+  <body>
+    <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sb-brand">
+          <div class="sb-mark">
+            <img src="assets/logo1.png" alt="logo" />
+          </div>
+          <div class="sb-name">WORKSNESIA</div>
+        </div>
+        <nav class="sb-nav">
+          <span class="sb-section">Menu</span>
+          <div class="nav-item active" onclick="navigate('dashboard', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+            Dashboard
+          </div>
+          <div class="nav-item" onclick="navigate('events', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            Event & Sesi
+            <span class="nav-chip" id="navChip">0</span>
+          </div>
+          <!-- <div class="nav-item" onclick="navigate('booking', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M16 3h5v5" />
+              <path d="M8 3H3v5" />
+              <path d="M16 21h5v-5" />
+              <path d="M8 21H3v-5" />
+              <path d="M12 8v4l2 2" />
+            </svg>
+            Pemesanan
+          </div> -->
+          <div class="nav-item" onclick="navigate('participants', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            Peserta
+          </div>
+          <div class="nav-item" onclick="navigate('absensi', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <path
+                d="M14 14h.01M14 17h.01M17 14h.01M21 14h.01M17 17h.01M21 17h.01M17 21h.01M21 21h.01"
+              />
+            </svg>
+            Absensi
+          </div>
+          <div class="nav-item" onclick="navigate('rating', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              />
+            </svg>
+            Rating & Feedback
+          </div>
+          <div class="nav-item" onclick="navigate('certificates', this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="6" />
+              <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+            </svg>
+            Sertifikat
+          </div>
+        </nav>
+        <div class="sb-footer">
+          <div class="user-card">
+            <div class="avatar">W</div>
+            <div>
+              <div class="u-name">Worknesia</div>
+              <div class="u-role">Administrator</div>
+            </div>
+          </div>
+          <button
+            class="btn-logout"
+            onclick="window.location.href = 'login.html'"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Keluar
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <div class="main">
+        <div class="topbar">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <button class="sb-toggle" onclick="openSidebar()">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+            <div class="topbar-title" id="topbarTitle">Dashboard</div>
+          </div>
+          <div class="topbar-date" id="topbarDate"></div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: DASHBOARD
+  ═══════════════════════════════════════════════ -->
+        <div class="page active" id="page-dashboard">
+          <div class="pg-header">
+            <div class="pg-eyebrow">Panel Kontrol</div>
+            <div class="pg-title">Selamat Datang</div>
+            <div class="pg-sub">
+              Ringkasan aktivitas dan statistik event hari ini.
+            </div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-card sc-lime">
+              <div class="sc-accent"></div>
+              <div class="stat-lbl">Total Event</div>
+              <div class="stat-val sv-lime" id="d-ev">0</div>
+              <div class="stat-hint">Event terdaftar</div>
+            </div>
+
+            <div class="stat-card sc-coral">
+              <div class="sc-accent"></div>
+              <div class="stat-lbl">Peserta</div>
+              <div class="stat-val sv-coral" id="d-part">0</div>
+              <div class="stat-hint">Terdaftar</div>
+            </div>
+            <div class="stat-card sc-rose">
+              <div class="sc-accent"></div>
+              <div class="stat-lbl">Hadir</div>
+              <div class="stat-val sv-rose" id="d-att">0</div>
+              <div class="stat-hint">Sudah absen</div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Event Akan Datang</div>
+                <span class="chip ch-lime">Upcoming</span>
+              </div>
+              <hr class="sep" />
+              <div id="upcomingList">
+                <div class="empty">
+                  <div class="empty-ico">📅</div>
+                  Belum ada event mendatang.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Kalender</div>
+                <div class="cal-nav">
+                  <button class="cal-btn" onclick="calPrev()">‹</button
+                  ><button class="cal-btn" onclick="calNext()">›</button>
+                </div>
+              </div>
+              <hr class="sep" />
+              <div id="calWidget"></div>
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Registrasi Harian</div>
+                <span class="chip ch-sky">7 Hari</span>
+              </div>
+              <hr class="sep" />
+              <div class="chart-wrap"><canvas id="regChart"></canvas></div>
+            </div>
+            <div class="card">
+              <div class="card-hd">
+                <div class="card-title">Kehadiran per Event</div>
+              </div>
+              <hr class="sep" />
+              <div class="chart-wrap"><canvas id="attChart"></canvas></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd">
+              <div class="card-title">Feedback Terbaru</div>
+              <span class="chip ch-coral">Terbaru</span>
+            </div>
+            <hr class="sep" />
+            <div id="fbListDash"></div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: EVENTS
+  ═══════════════════════════════════════════════ -->
+        <div class="page" id="page-events">
+          <div
+            style="
+              display: flex;
+              align-items: flex-end;
+              justify-content: space-between;
+              margin-bottom: 22px;
+              flex-wrap: wrap;
+              gap: 12px;
+            "
+          >
+            <div class="pg-header" style="margin-bottom: 0">
+              <div class="pg-eyebrow">Manajemen</div>
+              <div class="pg-title">Event & Sesi</div>
+              <div class="pg-sub">Kelola event dan sesi di dalamnya.</div>
+            </div>
+            <button class="btn btn-dark" onclick="openModal('mAddEv')">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Tambah Event
+            </button>
+          </div>
+          <div id="evList">
+            <div class="empty">
+              <div class="empty-ico"></div>
+              Belum ada event.
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: PEMESANAN
+  ═══════════════════════════════════════════════ -->
+        <div class="page" id="page-booking">
+          <div class="pg-header">
+            <div class="pg-eyebrow">Daftar Sekarang</div>
+            <div class="pg-title">Pemesanan Event</div>
+            <div class="pg-sub">
+              Pilih event, daftarkan diri, dan dapatkan tiket QR-Code.
+            </div>
+          </div>
+          <!-- Event Grid -->
+          <div id="bookingEventGrid"></div>
+          <!-- Ticket Modal Result -->
+          <div id="ticketSection" style="display: none; margin-top: 24px">
+            <div class="card" style="max-width: 480px; margin: 0 auto">
+              <div class="card-hd">
+                <div class="card-title">Tiket Anda</div>
+                <button class="btn btn-outline btn-sm" onclick="closeTicket()">
+                  Tutup
+                </button>
+              </div>
+              <hr class="sep" />
+              <div id="ticketContent"></div>
+              <div style="display: flex; gap: 8px; margin-top: 14px">
+                <button
+                  class="btn btn-dark btn-full no-print"
+                  onclick="window.print()"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 6 2 18 2 18 9" />
+                    <path
+                      d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                    />
+                    <rect x="6" y="14" width="12" height="8" />
+                  </svg>
+                  Cetak Tiket
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: PARTICIPANTS
+  ═══════════════════════════════════════════════ -->
+        <div class="page" id="page-participants">
+          <div
+            style="
+              display: flex;
+              align-items: flex-end;
+              justify-content: space-between;
+              margin-bottom: 22px;
+              flex-wrap: wrap;
+              gap: 12px;
+            "
+          >
+            <div class="pg-header" style="margin-bottom: 0">
+              <div class="pg-eyebrow">Data</div>
+              <div class="pg-title">Peserta</div>
+              <div class="pg-sub">Daftar seluruh peserta yang terdaftar.</div>
+            </div>
+            <button class="btn btn-dark" onclick="openModal('mAddPart')">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Tambah Peserta
+            </button>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              margin-bottom: 14px;
+              flex-wrap: wrap;
+            "
+          >
+            <select
+              id="filterEvPart"
+              style="flex: 1; min-width: 180px"
+              onchange="renderParticipants()"
+            >
+              <option value="">Semua Event</option>
+            </select>
+            <input
+              type="text"
+              id="searchPart"
+              placeholder="🔍  Cari nama atau email..."
+              style="flex: 1; min-width: 200px"
+              oninput="renderParticipants()"
+            />
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden">
+            <div class="tw">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Event</th>
+                    <th>Tgl Daftar</th>
+                    <th>Status</th>
+                    <th>Kode Tiket</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="partBody">
+                  <tr>
+                    <td
+                      colspan="8"
+                      style="
+                        text-align: center;
+                        color: var(--ink4);
+                        padding: 32px;
+                      "
+                    >
+                      Belum ada peserta.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: ABSENSI 
+  ═══════════════════════════════════════════════ -->
+        <div class="page" id="page-absensi">
+          <div class="pg-header">
+            <div class="pg-eyebrow">Kehadiran</div>
+            <div class="pg-title">Absensi Peserta</div>
+            <div class="pg-sub">
+              Tandai kehadiran peserta via kode tiket atau pilih manual dari
+              daftar.
+            </div>
+          </div>
+
+          <!-- Top row: Scan + Statistik -->
+          <div class="g2" style="margin-bottom: 20px; align-items: start">
+            <!-- Scan card -->
+            <div class="card">
+              <div class="card-title">Cari Tiket</div>
+              <hr class="sep" />
+              <label class="fl" style="margin-bottom: 6px"
+                >Kode Tiket Peserta</label
+              >
+              <div style="display: flex; gap: 8px">
+                <input
+                  type="text"
+                  id="scanInput"
+                  placeholder="Ketik booking code, contoh: BK-A1B2C3D4"
+                  style="
+                    flex: 1;
+                    font-family: monospace;
+                    font-size: 0.88rem;
+                    letter-spacing: 0.04em;
+                  "
+                  onkeydown="if (event.key === 'Enter') processAbsensi();"
+                />
+                <button
+                  class="btn btn-dark"
+                  onclick="processAbsensi()"
+                  style="flex-shrink: 0"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    style="width: 15px; height: 15px"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Absen
+                </button>
+              </div>
+              <div
+                id="scanResult"
+                style="margin-top: 12px; display: none"
+              ></div>
+              <div
+                style="
+                  margin-top: 14px;
+                  padding: 14px;
+                  background: var(--sand);
+                  border-radius: 10px;
+                  text-align: center;
+                  font-size: 10px;
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.8rem;
+                    margin-bottom: 6px height;
+                    height: fit-content;
+                  "
+                >
+                  © Worknesia (2026)
+                </div>
+              </div>
+            </div>
+
+            <!-- Statistik card -->
+            <div class="card">
+              <div class="card-title">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  style="width: 16px; height: 16px; flex-shrink: 0"
+                >
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+                Statistik Kehadiran
+              </div>
+              <hr class="sep" />
+              <div id="absensiStats">
+                <div
+                  style="
+                    text-align: center;
+                    padding: 24px;
+                    color: var(--ink4);
+                    font-size: 0.84rem;
+                  "
+                >
+                  Memuat data...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabel peserta -->
+          <div class="card" style="padding: 0; overflow: hidden">
+            <div
+              style="
+                padding: 14px 18px;
+                border-bottom: 1.5px solid var(--sand3);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+              "
+            >
+              <div class="card-title" style="margin-bottom: 0">
+                Daftar Peserta
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <select
+                  id="absensiEvFilter"
+                  style="min-width: 160px; font-size: 0.82rem"
+                  onchange="renderAbsensiTable()"
+                >
+                  <option value="">Semua Event</option>
+                </select>
+                <input
+                  type="text"
+                  id="absensiSearch"
+                  placeholder="Cari nama, email, atau kode..."
+                  style="min-width: 200px; font-size: 0.82rem"
+                  oninput="renderAbsensiTable()"
+                />
+              </div>
+            </div>
+            <div class="tw">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 40px">#</th>
+                    <th>Nama & Email</th>
+                    <th>Event</th>
+                    <th>Kode Tiket</th>
+                    <th style="width: 110px">Status</th>
+                    <th style="width: 150px">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="absensiBody">
+                  <tr>
+                    <td
+                      colspan="6"
+                      style="
+                        text-align: center;
+                        padding: 32px;
+                        color: var(--ink4);
+                      "
+                    >
+                      Belum ada data.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: RATING & FEEDBACK
+  ═══════════════════════════════════════════════ -->
+        <div class="page" id="page-rating">
+          <div class="pg-header">
+            <div class="pg-eyebrow">Evaluasi</div>
+            <div class="pg-title">Rating & Feedback</div>
+            <div class="pg-sub">Penilaian dari peserta yang telah hadir.</div>
+          </div>
+
+          <!-- Summary cards row -->
+          <div
+            class="g3"
+            id="ratingStatCards"
+            style="
+              margin-bottom: 20px;
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+              gap: 14px;
+            "
+          ></div>
+
+          <!-- Filter + list -->
+          <div class="card" style="padding: 0; overflow: hidden">
+            <div
+              style="
+                padding: 14px 18px;
+                border-bottom: 1.5px solid var(--sand3);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+              "
+            >
+              <div class="card-title" style="margin-bottom: 0">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  style="width: 16px; height: 16px; flex-shrink: 0"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+                Semua Ulasan
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <select
+                  id="adminFbEvFilter"
+                  style="font-size: 0.82rem; min-width: 160px"
+                  onchange="loadAdminFeedback()"
+                >
+                  <option value="">Semua Event</option>
+                </select>
+                <select
+                  id="adminFbSort"
+                  style="font-size: 0.82rem"
+                  onchange="renderAdminFeedback()"
+                >
+                  <option value="newest">Terbaru</option>
+                  <option value="highest">Rating Tertinggi</option>
+                  <option value="lowest">Rating Terendah</option>
+                </select>
+              </div>
+            </div>
+            <div id="adminFbList" style="padding: 16px">
+              <div
+                style="
+                  text-align: center;
+                  padding: 32px;
+                  color: var(--ink4);
+                  font-size: 0.84rem;
+                "
+              >
+                Memuat ulasan...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+       PAGE: CERTIFICATES
+  ═══════════════════════════════════════════════ -->
+        <div class="page" id="page-certificates">
+          <div class="pg-header">
+            <div class="pg-eyebrow">Penghargaan</div>
+            <div class="pg-title">Sertifikat</div>
+            <div class="pg-sub">
+              Sertifikat otomatis untuk peserta yang telah hadir.
+            </div>
+          </div>
+          <div class="g2">
+            <div class="card">
+              <div class="card-title">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  style="width: 16px; height: 16px; flex-shrink: 0"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                Pilih Peserta
+              </div>
+              <hr class="sep" />
+              <div class="fg" style="margin-bottom: 10px">
+                <label class="fl">Filter Event</label>
+                <select id="certEvFilter" onchange="renderCertList()">
+                  <option value="">Semua Event</option>
+                </select>
+              </div>
+              <div id="certList">
+                <div
+                  style="
+                    text-align: center;
+                    padding: 32px 16px;
+                    color: var(--ink4);
+                  "
+                >
+                  <div style="font-size: 2rem; margin-bottom: 8px">🏆</div>
+                  <div style="font-size: 0.84rem">
+                    Belum ada peserta yang hadir.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  style="width: 16px; height: 16px; flex-shrink: 0"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8" />
+                  <path d="M12 17v4" />
+                </svg>
+                Preview Sertifikat
+              </div>
+              <hr class="sep" />
+              <div class="cert-preview" id="certPreviewBox">
+                <div class="cert-corner tl"></div>
+                <div class="cert-corner tr"></div>
+                <div class="cert-corner bl"></div>
+                <div class="cert-corner br"></div>
+                <div class="cert-logo">✦ Worknesia ✦</div>
+                <div class="cert-heading">Certificate of Attendance</div>
+                <div class="cert-divider"></div>
+                <div class="cert-presented">Dengan bangga diberikan kepada</div>
+                <div class="cert-name" id="cName">— Pilih Peserta —</div>
+                <div class="cert-sub">atas kehadiran dalam</div>
+                <div class="cert-event" id="cEvent"></div>
+                <div class="cert-date" id="cDate"></div>
+                <div
+                  id="certQrWrap"
+                  style="
+                    display: none;
+                    margin-top: 14px;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 6px;
+                  "
+                >
+                  <canvas
+                    id="certQr"
+                    style="
+                      width: 64px;
+                      height: 64px;
+                      border-radius: 6px;
+                      border: 1.5px solid var(--sand3);
+                    "
+                  ></canvas>
+                  <div
+                    style="
+                      font-size: 0.6rem;
+                      color: var(--ink4);
+                      letter-spacing: 0.06em;
+                    "
+                    id="certQrId"
+                  ></div>
+                </div>
+                <div class="cert-seal">Sertifikat Resmi Worknesia</div>
+              </div>
+              <div style="margin-top: 13px; display: flex; gap: 8px">
+                <button
+                  class="btn btn-dark btn-full"
+                  id="btnDl"
+                  onclick="downloadCert()"
+                  disabled
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Download / Cetak Sertifikat
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /main -->
+    </div>
+    <!-- /app -->
+
+    <div id="toast"></div>
+
+    <!-- ═══ MODAL: TAMBAH EVENT ═══ -->
+    <div class="modal-bg" id="mAddEv">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-title">Tambah Event Baru</div>
+          <div class="modal-close" onclick="closeModal('mAddEv')">✕</div>
+        </div>
+        <div class="fg">
+          <label class="fl">Nama Event *</label>
+          <input
+            type="text"
+            id="inEvName"
+            placeholder="cth: Tech Summit 2026"
+          />
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Tanggal Mulai *</label>
+            <input type="date" id="inEvStart" />
+          </div>
+          <div class="fg">
+            <label class="fl">Tanggal Selesai</label>
+            <input type="date" id="inEvEnd" />
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Jam Mulai *</label>
+            <input type="time" id="inEvTimeStart" />
+          </div>
+          <div class="fg">
+            <label class="fl">Jam Selesai</label>
+            <input type="time" id="inEvTimeEnd" />
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Lokasi</label>
+          <input
+            type="text"
+            id="inEvLoc"
+            placeholder="cth: Jakarta Convention Center"
+          />
+        </div>
+        <div class="fg">
+          <label class="fl">Deskripsi</label>
+          <textarea
+            id="inEvDesc"
+            placeholder="Deskripsi singkat event..."
+          ></textarea>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Kategori</label>
+            <select id="inEvCat">
+              <option value="seminar">Seminar</option>
+              <option value="workshop">Workshop</option>
+              <option value="pelatihan">Pelatihan</option>
+              <option value="konferensi">Konferensi</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl">Harga (Rp) — 0 gratis</label>
+            <input type="number" id="inEvPrice" placeholder="0" min="0" />
+          </div>
+        </div>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mAddEv')">
+            Batal
+          </button>
+          <button class="btn btn-dark" onclick="addEvent()" style="flex: 2">
+            Simpan Event
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODAL: KONFIRMASI HAPUS ═══ -->
+    <div class="modal-bg" id="mKonfirmHapus">
+      <div class="modal" style="max-width: 400px">
+        <div class="modal-hd">
+          <div class="modal-title" id="mKonfirmHapusTitle">Hapus?</div>
+          <div class="modal-close" onclick="closeModal('mKonfirmHapus')">✕</div>
+        </div>
+        <p
+          id="mKonfirmHapusMsg"
+          style="
+            font-size: 0.88rem;
+            color: var(--ink3);
+            margin-bottom: 20px;
+            line-height: 1.65;
+          "
+        ></p>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mKonfirmHapus')">
+            Batal
+          </button>
+          <button class="btn btn-danger" id="mKonfirmHapusBtn" style="flex: 2">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              style="width: 15px; height: 15px"
+            >
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14H6L5 6" />
+              <path d="M10 11v6" />
+              <path d="M14 11v6" />
+              <path d="M9 6V4h6v2" />
+            </svg>
+            Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODAL: UPLOAD GAMBAR EVENT ═══ -->
+    <div class="modal-bg" id="mUploadImg">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-title">Upload Gambar Event</div>
+          <div class="modal-close" onclick="closeModal('mUploadImg')">✕</div>
+        </div>
+        <input type="hidden" id="uploadImgEvId" />
+        <div class="fg">
+          <label class="fl">Pilih Gambar (JPG/PNG/WebP, maks 3MB)</label>
+          <input
+            type="file"
+            id="uploadImgFile"
+            accept=".jpg,.jpeg,.png,.webp"
+            onchange="previewUploadImg(this)"
+          />
+        </div>
+        <div
+          id="uploadImgPreview"
+          style="
+            margin-bottom: 12px;
+            display: none;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1.5px solid var(--sand3);
+          "
+        >
+          <img
+            id="uploadImgPreviewEl"
+            style="
+              width: 100%;
+              max-height: 160px;
+              object-fit: cover;
+              display: block;
+            "
+          />
+        </div>
+        <div
+          id="uploadImgMsg"
+          style="
+            font-size: 0.78rem;
+            color: var(--rose);
+            margin-bottom: 8px;
+            display: none;
+          "
+        ></div>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mUploadImg')">
+            Batal
+          </button>
+          <button
+            class="btn btn-dark"
+            id="uploadImgBtn"
+            onclick="doUploadImage()"
+            style="flex: 2"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              style="width: 15px; height: 15px"
+            >
+              <polyline points="16 16 12 12 8 16" />
+              <line x1="12" y1="12" x2="12" y2="21" />
+              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+            </svg>
+            Upload Gambar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODAL: EDIT SESI ═══ -->
+    <div class="modal-bg" id="mEditSess">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-title">Edit Sesi</div>
+          <div class="modal-close" onclick="closeModal('mEditSess')">✕</div>
+        </div>
+        <input type="hidden" id="editSessId" />
+        <input type="hidden" id="editSessDate" />
+        <div class="fg">
+          <label class="fl">Nama Sesi *</label>
+          <input
+            type="text"
+            id="editSessTitle"
+            placeholder="cth: Opening Ceremony"
+          />
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Tanggal</label>
+            <input type="date" id="editSessDateInput" />
+          </div>
+          <div class="fg">
+            <label class="fl">Jam (cth: 09.00-10.30)</label>
+            <input type="text" id="editSessTime" placeholder="09.00 - 10.30" />
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Speaker / Pembicara</label>
+            <input
+              type="text"
+              id="editSessSpeaker"
+              placeholder="Nama pembicara..."
+            />
+          </div>
+          <div class="fg">
+            <label class="fl">Kapasitas</label>
+            <input
+              type="number"
+              id="editSessCapacity"
+              placeholder="50"
+              min="1"
+            />
+          </div>
+        </div>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mEditSess')">
+            Batal
+          </button>
+          <button
+            class="btn btn-dark"
+            onclick="submitEditSession()"
+            style="flex: 2"
+          >
+            Simpan Perubahan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-bg" id="mAddSess">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-title">Tambah Sesi</div>
+          <div class="modal-close" onclick="closeModal('mAddSess')">✕</div>
+        </div>
+        <input type="hidden" id="inSessEvId" />
+        <div class="fg">
+          <label class="fl">Nama Sesi *</label
+          ><input
+            type="text"
+            id="inSessName"
+            placeholder="cth: Keynote Opening"
+          />
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Tanggal</label
+            ><input type="date" id="inSessDate" />
+          </div>
+          <div class="fg">
+            <label class="fl">Waktu</label
+            ><input type="text" id="inSessTime" placeholder="09:00 – 10:30" />
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Pembicara</label
+          ><input
+            type="text"
+            id="inSessSpk"
+            placeholder="cth: Dr. Budi Santoso"
+          />
+        </div>
+        <div class="fg">
+          <label class="fl">Kapasitas</label
+          ><input type="number" id="inSessCap" placeholder="cth: 100" min="1" />
+        </div>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mAddSess')">
+            Batal
+          </button>
+          <button class="btn btn-dark" onclick="addSession()" style="flex: 2">
+            Simpan Sesi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODAL: TAMBAH PESERTA (ADMIN) ═══ -->
+    <div class="modal-bg" id="mAddPart">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-title">Tambah Peserta</div>
+          <div class="modal-close" onclick="closeModal('mAddPart')">✕</div>
+        </div>
+        <div style="background:var(--sky-lt);border:1.5px solid #bae6fd;border-radius:9px;padding:10px 13px;font-size:.8rem;color:#0c4a6e;margin-bottom:14px;">
+          Buat akun baru + daftarkan ke event. Peserta bisa login dengan email & password ini.
+        </div>
+        <div class="fg">
+          <label class="fl">Nama Lengkap *</label>
+          <input type="text" id="inPN" placeholder="cth: Budi Santoso" />
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Email *</label>
+            <input type="email" id="inPE" placeholder="budi@email.com" />
+          </div>
+          <div class="fg">
+            <label class="fl">Password *</label>
+            <input type="password" id="inPPass" placeholder="min. 6 karakter" />
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">No. HP</label>
+            <input type="text" id="inPP" placeholder="08123..." />
+          </div>
+          <div class="fg">
+            <label class="fl">Event *</label>
+            <select id="inPEv" onchange="fillSessSelect()">
+              <option value="">— Pilih Event —</option>
+            </select>
+          </div>
+        </div>
+        <div id="addPartMsg" style="font-size:.78rem;color:var(--rose);margin-bottom:8px;display:none;padding:8px 12px;background:var(--rose-lt);border-radius:8px;border:1.5px solid #fecdd3;"></div>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mAddPart')">Batal</button>
+          <button class="btn btn-dark" onclick="addParticipant()" style="flex:2">Tambah Peserta</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODAL: DAFTAR EVENT (PUBLIC) ═══ -->
+    <div class="modal-bg" id="mBookEv">
+      <div class="modal modal-wide">
+        <div class="modal-hd">
+          <div class="modal-title" id="mBookTitle">Daftar Event</div>
+          <div class="modal-close" onclick="closeModal('mBookEv')">✕</div>
+        </div>
+        <input type="hidden" id="mBookEvId" />
+        <div
+          id="mBookEvInfo"
+          style="
+            background: var(--sand);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-size: 0.83rem;
+            color: var(--ink3);
+          "
+        ></div>
+        <div class="fg">
+          <label class="fl">Nama Lengkap *</label
+          ><input type="text" id="bkPN" placeholder="Nama kamu..." />
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl">Email *</label
+            ><input type="email" id="bkPE" placeholder="email@domain.com" />
+          </div>
+          <div class="fg">
+            <label class="fl">No. HP</label
+            ><input type="text" id="bkPP" placeholder="0812..." />
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Pilih Sesi *</label
+          ><select id="bkSess">
+            <option value="">— Pilih Sesi —</option>
+          </select>
+        </div>
+        <div class="modal-ft">
+          <button class="btn btn-outline" onclick="closeModal('mBookEv')">
+            Batal
+          </button>
+          <button class="btn btn-dark" onclick="bookEvent()" style="flex: 2">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+            Konfirmasi Pendaftaran
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ MODAL: LIHAT TIKET ═══ -->
+    <div class="modal-bg" id="mTicket">
+      <div class="modal modal-wide">
+        <div class="modal-hd">
+          <div class="modal-title">🎟️ Tiket Peserta</div>
+          <div class="modal-close" onclick="closeModal('mTicket')">✕</div>
+        </div>
+        <div id="mTicketContent"></div>
+        <div style="display: flex; gap: 8px; margin-top: 14px">
+          <button class="btn btn-dark btn-full" onclick="window.print()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="6 9 6 2 18 2 18 9" />
+              <path
+                d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+              />
+              <rect x="6" y="14" width="12" height="8" />
+            </svg>
+            Cetak Tiket
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ═══════════════════════════════════════════
+      // DATA STORE
+      // ═══════════════════════════════════════════
+      const DB = {
+        events: [],
+        participants: [],
+        feedback: [],
+      };
+
+      let selCert = null,
+        calY = new Date().getFullYear(),
+        calM = new Date().getMonth(),
+        regCh = null,
+        activeRating = 0;
+
+      // ═══════════════════════════════════════════
+      // LOAD EVENTS FROM BACKEND
+      // ═══════════════════════════════════════════
+      async function loadEvents() {
+        try {
+          const token = localStorage.getItem("token");
+
+          const res = await fetch("http://localhost:5000/api/events", {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+
+          if (res.status === 401) {
+            handleExpiredToken();
+            return;
+          }
+
+          if (!res.ok) {
+            console.error("loadEvents HTTP error:", res.status);
+            toast("Gagal load event: " + res.status, "error");
+            return;
+          }
+
+          const data = await res.json();
+
+          if (!Array.isArray(data)) {
+            console.error("loadEvents: bukan array", data);
+            return;
+          }
+
+          console.log("EVENTS:", data.length);
+
+          DB.events = [];
+
+          for (const ev of data) {
+            let sessions = [];
+            try {
+              const sessRes = await fetch(
+                `http://localhost:5000/api/sessions/event/${ev.id}`,
+              );
+              if (sessRes.ok) sessions = await sessRes.json();
+            } catch (err) {
+              console.log("Gagal load sesi:", err);
+            }
+
+            DB.events.push({
+              id: ev.id,
+              name: ev.title,
+              title: ev.title,
+              desc: ev.description,
+              dateStart: ev.date,
+              dateEnd: ev.end_date,
+              startTime: ev.start_time,
+              endTime: ev.end_time,
+              location: ev.location,
+              category: ev.category || "seminar",
+              price: ev.price || 0,
+              sessions: Array.isArray(sessions) ? sessions.reverse() : [],
+              img_source: ev.img_source || null,
+            });
+          }
+
+          refresh();
+        } catch (err) {
+          console.error("loadEvents error:", err);
+          toast("Gagal load event", "error");
+        }
+      }
+
+      //load session berdasarkan event id
+      async function loadSessions(eventId) {
+        try {
+          const token = localStorage.getItem("token");
+
+          console.log("LOAD SESSION TOKEN:", token);
+
+          const res = await fetch(
+            `http://localhost:5000/api/sessions/event/${eventId}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            },
+          );
+
+          console.log("SESSION STATUS:", res.status);
+
+          const data = await res.json();
+
+          console.log("SESSION DATA:", data);
+
+          if (!res.ok) {
+            alert(JSON.stringify(data));
+
+            return [];
+          }
+
+          return data;
+        } catch (err) {
+          console.log("LOAD SESSION ERROR:", err);
+
+          alert(err.message);
+
+          return [];
+        }
+      }
+
+      async function loadParticipants() {
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch("http://localhost:5000/api/participants", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (!res.ok) throw new Error("Status " + res.status);
+          const data = await res.json();
+          DB.participants = data;
+
+          // Populate filter event dropdown
+          const sel = document.getElementById("filterEvPart");
+          if (sel) {
+            // Reset ke "Semua Event"
+            sel.innerHTML = '<option value="">Semua Event</option>';
+            const seen = new Set();
+            data.forEach((p) => {
+              if (!seen.has(p.event_id)) {
+                seen.add(p.event_id);
+                const opt = document.createElement("option");
+                opt.value = p.event_id;
+                opt.textContent = p.event_name;
+                sel.appendChild(opt);
+              }
+            });
+          }
+
+          renderParticipants();
+        } catch (err) {
+          console.error(err);
+          toast("Gagal load peserta", "error");
+        }
+      }
+
+      function renderParticipants() {
+        const body = document.getElementById("partBody");
+        if (!body) return;
+
+        const search = (
+          document.getElementById("searchPart")?.value || ""
+        ).toLowerCase();
+        const evFilter = document.getElementById("filterEvPart")?.value || "";
+
+        const filtered = DB.participants.filter((p) => {
+          const matchSearch =
+            !search ||
+            (p.name || "").toLowerCase().includes(search) ||
+            (p.email || "").toLowerCase().includes(search);
+          const matchEv = !evFilter || String(p.event_id) === String(evFilter);
+          return matchSearch && matchEv;
+        });
+
+        if (!filtered.length) {
+          body.innerHTML = `
+              <tr>
+                <td colspan="8" style="text-align:center;padding:36px;color:var(--ink4);">
+                  ${DB.participants.length ? "Tidak ada peserta yang cocok." : "Belum ada peserta."}
+                </td>
+              </tr>`;
+          return;
+        }
+
+        body.innerHTML = filtered
+          .map((p, i) => {
+            const statusColor =
+              p.status === "attended"
+                ? "ch-sky"
+                : p.status === "cancelled"
+                  ? "ch-rose"
+                  : "ch-lime";
+            const statusLabel =
+              p.status === "attended"
+                ? "Hadir"
+                : p.status === "cancelled"
+                  ? "Dibatalkan"
+                  : "Terdaftar";
+            const tanggal = p.registered_at
+              ? new Date(p.registered_at).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "-";
+
+            return `
+              <tr>
+                <td>${i + 1}</td>
+                <td style="font-weight:600;">${p.name || "-"}</td>
+                <td style="color:var(--ink3);font-size:.82rem;">${p.email || "-"}</td>
+                <td>${p.event_name || "-"}</td>
+                <td style="font-size:.8rem;color:var(--ink3);">${tanggal}</td>
+                <td><span class="chip ${statusColor}">${statusLabel}</span></td>
+                <td>
+                  ${
+                    p.booking_code
+                      ? `<span style="font-family:monospace;font-size:.78rem;font-weight:700;color:var(--ink);background:var(--sand2);padding:3px 8px;border-radius:6px;border:1.5px solid var(--sand3);">${p.booking_code}</span>`
+                      : '<span style="color:var(--ink4);">-</span>'
+                  }
+                </td>
+                <td>
+                  <button class="btn btn-danger btn-sm" onclick="hapusPeserta(${p.id})">Hapus</button>
+                </td>
+              </tr>`;
+          })
+          .join("");
+      }
+
+      // ═══════════════════════════════════════════
+      // KONFIRMASI HAPUS (modal)
+      // ═══════════════════════════════════════════
+      function showConfirm(title, msg, onConfirm) {
+        document.getElementById("mKonfirmHapusTitle").textContent = title;
+        document.getElementById("mKonfirmHapusMsg").textContent = msg;
+        const btn = document.getElementById("mKonfirmHapusBtn");
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        newBtn.addEventListener("click", () => {
+          closeModal("mKonfirmHapus");
+          onConfirm();
+        });
+        openModal("mKonfirmHapus");
+      }
+
+      async function hapusPeserta(id) {
+        showConfirm(
+          "Hapus Peserta",
+          "Peserta ini akan dihapus secara permanen. Yakin?",
+          async () => {
+            const token = localStorage.getItem("token");
+            try {
+              const res = await fetch(
+                `http://localhost:5000/api/participants/${id}`,
+                {
+                  method: "DELETE",
+                  headers: { Authorization: "Bearer " + token },
+                },
+              );
+              if (res.ok) {
+                DB.participants = DB.participants.filter((p) => p.id !== id);
+                renderParticipants();
+                renderDashboard();
+                renderCharts();
+                toast("Peserta berhasil dihapus.");
+              } else {
+                const d = await res.json();
+                toast(d.message || "Gagal menghapus.", "error");
+              }
+            } catch {
+              toast("Koneksi gagal.", "error");
+            }
+          },
+        );
+      }
+
+      async function addParticipant() {
+        const name = document.getElementById("inPN").value.trim();
+        const email = document.getElementById("inPE").value.trim();
+        const password = document.getElementById("inPPass").value;
+        const phone = document.getElementById("inPP").value.trim();
+        const eventId = document.getElementById("inPEv").value;
+        const msgEl = document.getElementById("addPartMsg");
+        msgEl.style.display = "none";
+
+        if (!name || !email || !password || !eventId) {
+          msgEl.textContent = "Nama, email, password, dan event wajib diisi.";
+          msgEl.style.display = "block";
+          return;
+        }
+        if (password.length < 6) {
+          msgEl.textContent = "Password minimal 6 karakter.";
+          msgEl.style.display = "block";
+          return;
+        }
+
+        const token = localStorage.getItem("token");
+        try {
+          // 1. Register akun baru
+          const regRes = await fetch("http://localhost:5000/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password, phone }),
+          });
+          const regData = await regRes.json();
+          if (!regRes.ok && !regData.message?.includes("sudah digunakan")) {
+            msgEl.textContent = regData.message || "Gagal membuat akun.";
+            msgEl.style.display = "block";
+            return;
+          }
+
+          // 2. Login untuk dapat token user baru
+          const loginRes = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+          const loginData = await loginRes.json();
+          if (!loginRes.ok) {
+            msgEl.textContent = loginData.message || "Gagal login akun baru.";
+            msgEl.style.display = "block";
+            return;
+          }
+          const userToken = loginData.token;
+
+          // 3. Daftarkan ke event
+          const partRes = await fetch("http://localhost:5000/api/participants/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: "Bearer " + userToken },
+            body: JSON.stringify({ event_id: parseInt(eventId) }),
+          });
+          const partData = await partRes.json();
+          if (!partRes.ok) {
+            msgEl.textContent = partData.message || "Gagal daftarkan ke event.";
+            msgEl.style.display = "block";
+            return;
+          }
+
+          closeModal("mAddPart");
+          toast("Peserta berhasil ditambahkan & didaftarkan ke event!");
+          // Reset form
+          ["inPN","inPE","inPPass","inPP"].forEach(id => { const el=document.getElementById(id); if(el) el.value=""; });
+          document.getElementById("inPEv").value = "";
+          await loadParticipants();
+
+        } catch (err) {
+          console.error(err);
+          msgEl.textContent = "Koneksi gagal. Coba lagi.";
+          msgEl.style.display = "block";
+        }
+      }
+
+      // ═══════════════════════════════════════════
+      // ADD EVENT
+      // ═══════════════════════════════════════════
+      async function addEvent() {
+        const token = localStorage.getItem("token");
+
+        // ambil value form
+        const name = document.getElementById("inEvName").value.trim();
+
+        const startDate = document.getElementById("inEvStart").value;
+
+        const endDate = document.getElementById("inEvEnd").value;
+
+        const startTime = document.getElementById("inEvTimeStart").value;
+
+        const endTime = document.getElementById("inEvTimeEnd").value;
+
+        const location = document.getElementById("inEvLoc").value.trim();
+
+        const desc = document.getElementById("inEvDesc").value.trim();
+
+        const category = document.getElementById("inEvCat").value;
+
+        const price = document.getElementById("inEvPrice").value;
+
+        // validasi
+        if (!name || !startDate) {
+          toast("Nama event & tanggal wajib diisi", "error");
+          return;
+        }
+
+        try {
+          // kirim ke backend
+          const res = await fetch("http://localhost:5000/api/events", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+
+            body: JSON.stringify({
+              title: name,
+              description: desc,
+              date: startDate,
+              end_date: endDate,
+              start_time: startTime,
+              end_time: endTime,
+              location: location,
+              category: category,
+              price: price,
+            }),
+          });
+
+          const data = await res.json();
+
+          console.log(data);
+
+          // kalau gagal
+          if (!res.ok) {
+            toast(data.message || "Gagal tambah event", "error");
+
+            return;
+          }
+
+          // notif berhasil
+          toast("Event berhasil ditambahkan");
+
+          // tutup modal
+          closeModal("mAddEv");
+
+          // reset form
+          document.getElementById("inEvName").value = "";
+          document.getElementById("inEvStart").value = "";
+          document.getElementById("inEvEnd").value = "";
+          document.getElementById("inEvTimeStart").value = "";
+          document.getElementById("inEvTimeEnd").value = "";
+          document.getElementById("inEvLoc").value = "";
+          document.getElementById("inEvDesc").value = "";
+          document.getElementById("inEvPrice").value = "";
+
+          // =========================
+          // AUTO REFRESH DATA
+          // =========================
+
+          await loadEvents();
+
+          refresh();
+        } catch (err) {
+          console.log(err);
+
+          toast("Server error", "error");
+        }
+      }
+
+      // ═══════════════════════════════════════════
+      // DELETE EVENT
+      // ═══════════════════════════════════════════
+      async function deleteEvent(id) {
+        showConfirm(
+          "Hapus Event",
+          "Event dan semua datanya akan dihapus permanen. Yakin?",
+          async () => {
+            const token = localStorage.getItem("token");
+            const res = await fetch(`http://localhost:5000/api/events/${id}`, {
+              method: "DELETE",
+              headers: { Authorization: "Bearer " + token },
+            });
+            const data = await res.json();
+            if (!res.ok) {
+              toast(data.message || "Gagal hapus event", "error");
+              return;
+            }
+            toast("Event berhasil dihapus");
+            loadEvents();
+          },
+        );
+      }
+
+      async function editSession(session) {
+        // Isi form modal edit sesi
+        document.getElementById("editSessId").value = session.id;
+        document.getElementById("editSessTitle").value = session.title || "";
+        document.getElementById("editSessTime").value =
+          session.session_time || "";
+        document.getElementById("editSessSpeaker").value =
+          session.speaker || "";
+        document.getElementById("editSessCapacity").value =
+          session.capacity || "";
+
+        if (session.session_date) {
+          const raw = session.session_date;
+          const d = new Date(raw);
+          if (!isNaN(d)) {
+            document.getElementById("editSessDateInput").value = d
+              .toISOString()
+              .slice(0, 10);
+          }
+        } else {
+          document.getElementById("editSessDateInput").value = "";
+        }
+        document.getElementById("editSessDate").value =
+          session.session_date || "";
+        openModal("mEditSess");
+      }
+
+      async function submitEditSession() {
+        const id = document.getElementById("editSessId").value;
+        const title = document.getElementById("editSessTitle").value.trim();
+        const session_time = document
+          .getElementById("editSessTime")
+          .value.trim();
+        const speaker = document.getElementById("editSessSpeaker").value.trim();
+        const capacity = document.getElementById("editSessCapacity").value;
+        const dateInput = document.getElementById("editSessDateInput").value;
+        const session_date =
+          dateInput || document.getElementById("editSessDate").value;
+
+        if (!title) {
+          toast("Nama sesi wajib diisi", "error");
+          return;
+        }
+
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch(`http://localhost:5000/api/sessions/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify({
+              title,
+              session_date,
+              session_time,
+              speaker,
+              capacity,
+            }),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            toast(data.message || "Gagal edit sesi", "error");
+            return;
+          }
+          toast("Sesi berhasil diupdate");
+          closeModal("mEditSess");
+          loadEvents();
+        } catch (err) {
+          console.log(err);
+          toast("Server error", "error");
+        }
+      }
+
+      async function updateSession() {
+        const id = document.getElementById("editSessId").value;
+
+        const title = document.getElementById("editSessTitle").value;
+
+        const session_date = document.getElementById("editSessDate").value;
+
+        const session_time = document.getElementById("editSessTime").value;
+
+        const speaker = document.getElementById("editSessSpeaker").value;
+
+        const capacity = document.getElementById("editSessCapacity").value;
+
+        try {
+          const token = localStorage.getItem("token");
+
+          const res = await fetch(`http://localhost:5000/api/sessions/${id}`, {
+            method: "PUT",
+
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+
+            body: JSON.stringify({
+              title,
+              session_date,
+              session_time,
+              speaker,
+              capacity,
+            }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            toast(data.message || "Gagal update sesi", "error");
+
+            return;
+          }
+
+          toast("Sesi berhasil diupdate");
+
+          closeModal("mEditSess");
+
+          loadEvents();
+        } catch (err) {
+          console.log(err);
+
+          toast("Server error", "error");
+        }
+      }
+
+      // ═══════════════════════════════════════════
+      // UTILS
+      // ═══════════════════════════════════════════
+      function fmtDate(s) {
+        if (!s) return "—";
+
+        return new Date(s).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      }
+
+      function fmtRp(n) {
+        return n > 0 ? "Rp " + Number(n).toLocaleString("id-ID") : "Gratis";
+      }
+
+      function toast(msg, type = "success") {
+        const t = document.getElementById("toast");
+
+        t.textContent = (type === "success" ? "✓ " : "✕ ") + msg;
+
+        t.className = "show " + type;
+
+        clearTimeout(t._t);
+
+        t._t = setTimeout(() => {
+          t.className = "";
+        }, 3000);
+      }
+
+      function openModal(id) {
+        document.getElementById(id).classList.add("open");
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("open");
+      }
+
+      // ═══════════════════════════════════════════
+      // EVENT ICONS
+      // ═══════════════════════════════════════════
+      const evIcons = ["🎤", "🚀", "💡", "🎯", "🔥", "🏆", "🌐", "🎵"];
+
+      // ═══════════════════════════════════════════
+      // RENDER EVENTS
+      // ═══════════════════════════════════════════
+      function renderEvents() {
+        const el = document.getElementById("evList");
+
+        document.getElementById("navChip").textContent = DB.events.length;
+
+        // =========================
+        // EVENT PAGE
+        // =========================
+        if (!DB.events.length) {
+          el.innerHTML = `
+        <div class="empty">
+          <div class="empty-ico">📋</div>
+          Belum ada event.
+        </div>
+      `;
+
+          return;
+        }
+
+        el.innerHTML = DB.events
+          .map(
+            (e, i) => `
+        <div class="ev-card">
+
+          <div class="ev-head">
+
+            <div class="ev-icon" style="${e.img_source ? "padding:0;overflow:hidden;border-radius:10px;" : ""}">
+              ${
+                e.img_source
+                  ? `<img src="http://localhost:5000${e.img_source}" alt="${e.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+                  : evIcons[i % evIcons.length]
+              }
+            </div>
+
+            <div style="flex:1">
+
+              <div class="ev-name">
+                ${e.name}
+              </div>
+
+              <div class="ev-meta">
+                <span>📍 ${e.location || "-"}</span>
+                <span>📅 ${fmtDate(e.dateStart)}</span>
+                <span>💰 ${fmtRp(e.price)}</span>
+              </div>
+
+              ${
+                e.desc
+                  ? `
+                  <div style="
+                    font-size:.8rem;
+                    color:var(--ink4);
+                    margin-top:6px;
+                  ">
+                    ${e.desc}
+                  </div>
+                `
+                  : ""
+              }
+
+              <!-- SESSIONS -->
+              <div style="margin-top:14px">
+
+                <div style="
+                  font-weight:700;
+                  font-size:.82rem;
+                  margin-bottom:10px;
+                ">
+                  Sessions
+                </div>
+
+                ${
+                  e.sessions && e.sessions.length
+                    ? e.sessions
+                        .map(
+                          (s) => `
+                      <div style="
+                        background:#f5f5f5;
+                        padding:12px;
+                        border-radius:12px;
+                        margin-bottom:10px;
+                      ">
+
+                        <div style="
+                          font-weight:600;
+                          margin-bottom:4px;
+                        ">
+                          ${s.title}
+                        </div>
+
+                        <div style="
+                          font-size:.75rem;
+                          color:gray;
+                        ">
+                          👤 ${s.speaker || "-"}
+                        </div>
+
+                        <div style="
+                          font-size:.75rem;
+                          color:gray;
+                        ">
+                          🕒 ${s.session_time || "-"}
+                        </div>
+
+                        <div style="
+                          font-size:.75rem;
+                          color:gray;
+                        ">
+                          👥 ${s.capacity || 0} peserta
+                        </div>
+
+                        <div style="
+                          display:flex;
+                          gap:8px;
+                          margin-top:10px;
+                        ">
+                          <button
+                            class="btn btn-dark btn-sm"
+                            onclick='editSession(${JSON.stringify(s)})'
+                          >
+                            Edit
+                          </button>
+
+                          <button
+                            class="btn btn-danger btn-sm"
+                            onclick="deleteSession(${s.id})"
+                          >
+                            Hapus
+                          </button>
+                        </div>
+
+                      </div>
+                    `,
+                        )
+                        .join("")
+                    : `
+                      <div style="
+                        font-size:.75rem;
+                        color:gray;
+                      ">
+                        Belum ada sesi
+                      </div>
+                    `
+                }
+
+              </div>
+
+            </div>
+
+            <div class="ev-acts">
+
+              <button
+                class="btn btn-sm"
+                style="background:var(--sky-lt);color:var(--sky);border:1.5px solid #bae6fd;"
+                onclick="openUploadImg(${e.id})"
+                title="Upload gambar"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                Gambar
+              </button>
+
+              <button
+                class="btn btn-dark btn-sm"
+                onclick="openAddSession(${e.id})"
+              >
+                Sesi
+              </button>
+
+              <button
+                class="btn btn-danger btn-sm"
+                onclick="deleteEvent(${e.id})"
+              >
+                Hapus
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      `,
+          )
+          .join("");
+
+        // =========================
+        // BOOKING PAGE
+        // =========================
+        const bookingGrid = document.getElementById("bookingEventGrid");
+
+        if (bookingGrid) {
+          bookingGrid.innerHTML = DB.events
+            .map(
+              (e) => `
+          <div class="card" style="margin-bottom:20px">
+            <div class="card-hd">
+              <div class="card-title">${e.name}</div>
+            </div>
+
+            <hr class="sep" />
+
+            <div style="font-size:.82rem;color:var(--ink4)">
+              📍 ${e.location || "-"}<br>
+              📅 ${fmtDate(e.dateStart)}<br>
+              💰 ${fmtRp(e.price)}
+            </div>
+
+            ${
+              e.desc
+                ? `
+                <div style="
+                  margin-top:10px;
+                  font-size:.8rem;
+                  color:var(--ink3)
+                ">
+                  ${e.desc}
+                </div>
+              `
+                : ""
+            }
+
+            <button
+              class="btn btn-dark btn-full"
+              style="margin-top:14px"
+              onclick="openBooking(${e.id})"
+            >
+              Daftar Event
+            </button>
+          </div>
+        `,
+            )
+            .join("");
+        }
+
+        // =========================
+        // PARTICIPANT FILTER
+        // =========================
+        const filterEv = document.getElementById("filterEvPart");
+
+        if (filterEv) {
+          filterEv.innerHTML = `
+        <option value="">Semua Event</option>
+        ${DB.events
+          .map(
+            (e) => `
+              <option value="${e.id}">
+                ${e.name}
+              </option>
+            `,
+          )
+          .join("")}
+      `;
+        }
+
+        // =========================
+        // ADD PARTICIPANT EVENT SELECT
+        // =========================
+        const inPEv = document.getElementById("inPEv");
+
+        if (inPEv) {
+          inPEv.innerHTML = `
+        <option value="">— Pilih Event —</option>
+        ${DB.events
+          .map(
+            (e) => `
+              <option value="${e.id}">
+                ${e.name}
+              </option>
+            `,
+          )
+          .join("")}
+      `;
+        }
+      }
+
+      // ═══════════════════════════════════════════
+      // DASHBOARD
+      // ═══════════════════════════════════════════
+      function renderDashboard() {
+        document.getElementById("d-ev").textContent = DB.events.length;
+        document.getElementById("d-part").textContent = DB.participants.length;
+        document.getElementById("d-att").textContent = DB.participants.filter(
+          (p) => p.status === "attended" || p.attended === true,
+        ).length;
+
+        // Parse tanggal dari berbagai format (ISO full atau yyyy-mm-dd)
+        function safeDate(raw) {
+          if (!raw) return null;
+          // Kalau sudah ada "T" berarti ISO lengkap, parse langsung
+          // Kalau hanya yyyy-mm-dd, tambah T12:00:00 untuk hindari timezone shift
+          const str = String(raw).includes("T")
+            ? raw
+            : raw.slice(0, 10) + "T12:00:00";
+          const d = new Date(str);
+          return isNaN(d) ? null : d;
+        }
+
+        const sorted = [...DB.events].sort((a, b) => {
+          const da = safeDate(a.dateStart || a.date);
+          const db_ = safeDate(b.dateStart || b.date);
+          if (!da) return 1;
+          if (!db_) return -1;
+          return da - db_;
+        });
+
+        document.getElementById("upcomingList").innerHTML = !sorted.length
+          ? `<div class="empty"><div class="empty-ico">📅</div>Belum ada event.</div>`
+          : sorted
+              .slice(0, 5)
+              .map((e) => {
+                const d = safeDate(e.dateStart || e.date);
+                const day = d ? d.getDate() : "—";
+                const mon = d
+                  ? d.toLocaleDateString("id-ID", { month: "short" })
+                  : "";
+                return `
+                  <div class="up-item">
+                    <div class="date-box">
+                      <div class="db-day">${day}</div>
+                      <div class="db-mon">${mon}</div>
+                    </div>
+                    <div style="flex:1">
+                      <div class="up-name">${e.name || e.title}</div>
+                      <div class="up-meta">${e.location || "—"}</div>
+                    </div>
+                  </div>`;
+              })
+              .join("");
+
+        renderCal();
+      }
+
+      // ═══════════════════════════════════════════
+      // FEEDBACK TERBARU (dashboard)
+      // ═══════════════════════════════════════════
+      async function loadFeedbackDash() {
+        const el = document.getElementById("fbListDash");
+        if (!el) return;
+
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch("http://localhost:5000/api/feedback", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (!res.ok) throw new Error();
+          const data = await res.json();
+
+          if (!data.length) {
+            el.innerHTML =
+              '<div style="text-align:center;padding:24px;color:var(--ink4);font-size:.84rem;">Belum ada feedback.</div>';
+            return;
+          }
+
+          // Tampilkan 5 terbaru
+          el.innerHTML = data
+            .slice(0, 5)
+            .map((f) => {
+              const stars = "⭐".repeat(f.rating) + "☆".repeat(5 - f.rating);
+              const nama = f.user_name || "Peserta";
+              const tgl = f.created_at
+                ? new Date(f.created_at).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "short",
+                  })
+                : "";
+              return `
+                <div style="display:flex;gap:12px;padding:11px 0;border-bottom:1.5px solid var(--sand2);align-items:flex-start;">
+                  <div style="width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.72rem;flex-shrink:0;">
+                    ${nama.charAt(0).toUpperCase()}
+                  </div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
+                      <span style="font-weight:600;font-size:.84rem;">${nama}</span>
+                      <span style="font-size:.76rem;">${stars}</span>
+                      <span style="font-size:.7rem;color:var(--ink4);margin-left:auto;">${tgl}</span>
+                    </div>
+                    <div style="font-size:.72rem;color:var(--ink4);margin-bottom:3px;">
+                      <span style="background:var(--sand);padding:1px 7px;border-radius:99px;border:1.5px solid var(--sand3);">${f.event_name || "—"}</span>
+                    </div>
+                    <div style="font-size:.8rem;color:var(--ink3);font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                      "${f.comment || "Tidak ada komentar"}"
+                    </div>
+                  </div>
+                </div>`;
+            })
+            .join("");
+        } catch {
+          el.innerHTML =
+            '<div style="text-align:center;padding:24px;color:var(--ink4);font-size:.84rem;">Gagal memuat feedback.</div>';
+        }
+      }
+
+      // ═══════════════════════════════════════════
+      // GRAFIK (Chart.js)
+      // ═══════════════════════════════════════════
+      let regChartInst = null;
+      let attChartInst = null;
+
+      function renderCharts() {
+        renderRegChart();
+        renderAttChart();
+      }
+
+      function renderRegChart() {
+        const canvas = document.getElementById("regChart");
+        if (!canvas || typeof Chart === "undefined") return;
+
+        // Registrasi 7 hari terakhir
+        const days = 7;
+        const labels = [];
+        const data = [];
+
+        for (let i = days - 1; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          const dateStr = d.toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "short",
+          });
+          const isoDate = d.toISOString().slice(0, 10); // yyyy-mm-dd
+          labels.push(dateStr);
+          const count = DB.participants.filter((p) => {
+            const reg = p.registered_at ? p.registered_at.slice(0, 10) : "";
+            return reg === isoDate;
+          }).length;
+          data.push(count);
+        }
+
+        if (regChartInst) regChartInst.destroy();
+        regChartInst = new Chart(canvas, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "Registrasi",
+                data,
+                backgroundColor: "rgba(101,163,13,0.18)",
+                borderColor: "#65a30d",
+                borderWidth: 2,
+                borderRadius: 6,
+                borderSkipped: false,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: (c) => c.parsed.y + " peserta" } },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1, font: { size: 11 } },
+                grid: { color: "rgba(0,0,0,0.05)" },
+              },
+              x: {
+                ticks: { font: { size: 11 } },
+                grid: { display: false },
+              },
+            },
+          },
+        });
+      }
+
+      function renderAttChart() {
+        const canvas = document.getElementById("attChart");
+        if (!canvas || typeof Chart === "undefined") return;
+
+        if (!DB.events.length) {
+          canvas.parentElement.innerHTML =
+            '<div style="text-align:center;padding:32px;color:var(--ink4);font-size:.84rem;">Belum ada data.</div>';
+          return;
+        }
+
+        const labels = DB.events.map((e) =>
+          (e.name || e.title || "—").slice(0, 20),
+        );
+        const totalData = DB.events.map(
+          (e) =>
+            DB.participants.filter((p) => String(p.event_id) === String(e.id))
+              .length,
+        );
+        const hadirData = DB.events.map(
+          (e) =>
+            DB.participants.filter(
+              (p) =>
+                String(p.event_id) === String(e.id) &&
+                (p.status === "attended" || p.attended),
+            ).length,
+        );
+
+        if (attChartInst) attChartInst.destroy();
+        attChartInst = new Chart(canvas, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "Terdaftar",
+                data: totalData,
+                backgroundColor: "rgba(2,132,199,0.18)",
+                borderColor: "#0284c7",
+                borderWidth: 2,
+                borderRadius: 4,
+              },
+              {
+                label: "Hadir",
+                data: hadirData,
+                backgroundColor: "rgba(101,163,13,0.25)",
+                borderColor: "#65a30d",
+                borderWidth: 2,
+                borderRadius: 4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: { font: { size: 11 }, boxWidth: 12, padding: 12 },
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1, font: { size: 11 } },
+                grid: { color: "rgba(0,0,0,0.05)" },
+              },
+              x: {
+                ticks: { font: { size: 11 }, maxRotation: 30 },
+                grid: { display: false },
+              },
+            },
+          },
+        });
+      }
+
+      // ═══════════════════════════════════════════
+      // KALENDER
+      // ═══════════════════════════════════════════
+      function renderCal() {
+        const el = document.getElementById("calWidget");
+        if (!el) return;
+
+        const now = new Date();
+        const y = calY,
+          m = calM;
+        const firstDay = new Date(y, m, 1).getDay(); // 0=Sun
+        const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+        // Kumpulkan tanggal event di bulan ini
+        const eventDates = new Set();
+        DB.events.forEach((e) => {
+          const raw = e.dateStart || e.date;
+          if (!raw) return;
+          const str = String(raw).includes("T")
+            ? raw
+            : raw.slice(0, 10) + "T12:00:00";
+          const d = new Date(str);
+          if (!isNaN(d) && d.getFullYear() === y && d.getMonth() === m) {
+            eventDates.add(d.getDate());
+          }
+        });
+
+        const monthLabel = new Date(y, m, 1).toLocaleDateString("id-ID", {
+          month: "long",
+          year: "numeric",
+        });
+
+        let html = `
+            <div style="text-align:center;font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:10px;text-transform:capitalize;">${monthLabel}</div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center;">
+              ${["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"]
+                .map(
+                  (d) =>
+                    `<div style="font-size:.62rem;font-weight:700;color:var(--ink4);padding:3px 0;">${d}</div>`,
+                )
+                .join("")}
+              ${Array(firstDay).fill("<div></div>").join("")}
+              ${Array.from({ length: daysInMonth }, (_, i) => {
+                const day = i + 1;
+                const isToday =
+                  day === now.getDate() &&
+                  m === now.getMonth() &&
+                  y === now.getFullYear();
+                const hasEvent = eventDates.has(day);
+                return `<div style="
+                  padding:5px 2px;border-radius:6px;font-size:.78rem;font-weight:${isToday || hasEvent ? "700" : "400"};
+                  background:${isToday ? "var(--ink)" : hasEvent ? "var(--lime-lt)" : "transparent"};
+                  color:${isToday ? "#fff" : hasEvent ? "var(--lime)" : "var(--ink3)"};
+                  border:${hasEvent && !isToday ? "1.5px solid var(--lime-bd)" : "none"};
+                  position:relative;cursor:${hasEvent ? "pointer" : "default"};
+                  " title="${hasEvent ? "Ada event" : ""}">${day}</div>`;
+              }).join("")}
+            </div>`;
+
+        if (eventDates.size > 0) {
+          const evThisMonth = DB.events.filter((e) => {
+            const raw = e.dateStart || e.date;
+            if (!raw) return false;
+            const str = String(raw).includes("T")
+              ? raw
+              : raw.slice(0, 10) + "T12:00:00";
+            const d = new Date(str);
+            return !isNaN(d) && d.getFullYear() === y && d.getMonth() === m;
+          });
+          html += `<div style="margin-top:12px;border-top:1.5px solid var(--sand3);padding-top:10px;">
+              <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink4);margin-bottom:7px;">Event Bulan Ini</div>
+              ${evThisMonth
+                .map((e) => {
+                  const raw = e.dateStart || e.date;
+                  const str =
+                    raw && String(raw).includes("T")
+                      ? raw
+                      : (raw || "").slice(0, 10) + "T12:00:00";
+                  const d = new Date(str);
+                  return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+                    <div style="width:22px;height:22px;background:var(--lime-lt);border:1.5px solid var(--lime-bd);border-radius:5px;display:grid;place-items:center;font-size:.68rem;font-weight:700;color:var(--lime);flex-shrink:0;">${isNaN(d) ? "?" : d.getDate()}</div>
+                    <div style="font-size:.78rem;font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${e.name || e.title}</div>
+                  </div>`;
+                })
+                .join("")}
+            </div>`;
+        }
+
+        el.innerHTML = html;
+      }
+
+      function calPrev() {
+        calM--;
+        if (calM < 0) {
+          calM = 11;
+          calY--;
+        }
+        renderCal();
+      }
+
+      function calNext() {
+        calM++;
+        if (calM > 11) {
+          calM = 0;
+          calY++;
+        }
+        renderCal();
+      }
+
+      // ═══════════════════════════════════════════
+      // UPLOAD GAMBAR EVENT
+      // ═══════════════════════════════════════════
+      function openUploadImg(evId) {
+        document.getElementById("uploadImgEvId").value = evId;
+        document.getElementById("uploadImgFile").value = "";
+        document.getElementById("uploadImgPreview").style.display = "none";
+        document.getElementById("uploadImgMsg").style.display = "none";
+
+        // Tampilkan gambar existing kalau ada
+        const ev = DB.events.find((e) => e.id === evId);
+        if (ev && (ev.img_source || ev.imgSource)) {
+          const src = ev.img_source || ev.imgSource;
+          document.getElementById("uploadImgPreviewEl").src =
+            "http://localhost:5000" + src;
+          document.getElementById("uploadImgPreview").style.display = "block";
+        }
+
+        openModal("mUploadImg");
+      }
+
+      function previewUploadImg(input) {
+        const preview = document.getElementById("uploadImgPreview");
+        const previewEl = document.getElementById("uploadImgPreviewEl");
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            previewEl.src = e.target.result;
+            preview.style.display = "block";
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      async function doUploadImage() {
+        const evId = document.getElementById("uploadImgEvId").value;
+        const fileInput = document.getElementById("uploadImgFile");
+        const msgEl = document.getElementById("uploadImgMsg");
+        const btn = document.getElementById("uploadImgBtn");
+
+        if (!fileInput.files || !fileInput.files[0]) {
+          msgEl.textContent = "Pilih file gambar terlebih dahulu.";
+          msgEl.style.display = "block";
+          return;
+        }
+
+        const token = localStorage.getItem("token");
+        const formData = new FormData();
+        formData.append("image", fileInput.files[0]);
+
+        btn.disabled = true;
+        btn.textContent = "Mengupload...";
+        msgEl.style.display = "none";
+
+        try {
+          const res = await fetch(
+            `http://localhost:5000/api/events/${evId}/image`,
+            {
+              method: "POST",
+              headers: { Authorization: "Bearer " + token },
+              body: formData,
+            },
+          );
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            msgEl.textContent = data.message || "Upload gagal.";
+            msgEl.style.display = "block";
+            return;
+          }
+
+          // Update lokal
+          const ev = DB.events.find((e) => e.id === parseInt(evId));
+          if (ev) ev.img_source = data.img_url;
+
+          closeModal("mUploadImg");
+          toast("Gambar berhasil diupload! 🖼️");
+          renderEvents();
+        } catch (err) {
+          msgEl.textContent = "Koneksi gagal. Coba lagi.";
+          msgEl.style.display = "block";
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg> Upload Gambar`;
+        }
+      }
+
+      // ═══════════════════════════════════════════
+      // OPEN ADD SESSION MODAL
+      // ═══════════════════════════════════════════
+      function openAddSession(eventId) {
+        document.getElementById("inSessEvId").value = eventId;
+        // Reset semua field form
+        [
+          "inSessName",
+          "inSessDate",
+          "inSessTime",
+          "inSessSpk",
+          "inSessCap",
+        ].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = "";
+        });
+        openModal("mAddSess");
+      }
+
+      // ═══════════════════════════════════════════
+      // REFRESH
+      // ═══════════════════════════════════════════
+      function refresh() {
+        renderDashboard();
+        renderEvents();
+      }
+
+      // ═══════════════════════════════════════════
+      // INIT
+      // ═══════════════════════════════════════════
+      function handleExpiredToken() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("role_id");
+        alert("Sesi kamu telah berakhir. Silakan login kembali.");
+        window.location.href = "login.html";
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Cek token — kalau tidak ada atau expired, redirect ke login
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Quick token validity check
+        try {
+          const chk = await fetch("http://localhost:5000/api/events", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (chk.status === 401) {
+            handleExpiredToken();
+            return;
+          }
+        } catch (_) {}
+
+        document.getElementById("topbarDate").textContent =
+          new Date().toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          });
+
+        // Load events lalu participants
+        await loadEvents();
+
+        try {
+          const res = await fetch("http://localhost:5000/api/participants", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (res.status === 401) {
+            handleExpiredToken();
+            return;
+          }
+          if (res.ok) {
+            DB.participants = await res.json();
+            renderDashboard();
+            renderCharts();
+          }
+        } catch (e) {
+          console.error(e);
+        }
+        loadFeedbackDash();
+      });
+
+      // ═══════════════════════════════════════════
+      // ═══════════════════════════════════════════
+      // ABSENSI
+      // ═══════════════════════════════════════════
+      async function loadAbsensi() {
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch("http://localhost:5000/api/participants", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (!res.ok) throw new Error("Status " + res.status);
+          const data = await res.json();
+          DB.participants = data;
+
+          // Populate event filter
+          const sel = document.getElementById("absensiEvFilter");
+          if (sel) {
+            sel.innerHTML = '<option value="">Semua Event</option>';
+            const seen = new Set();
+            data.forEach((p) => {
+              if (!seen.has(p.event_id)) {
+                seen.add(p.event_id);
+                const opt = document.createElement("option");
+                opt.value = p.event_id;
+                opt.textContent = p.event_name;
+                sel.appendChild(opt);
+              }
+            });
+          }
+
+          renderAbsensiTable();
+          renderAbsensiStats();
+        } catch (err) {
+          console.error(err);
+          toast("Gagal load data absensi", "error");
+        }
+      }
+
+      function renderAbsensiStats() {
+        const total = DB.participants.length;
+        const hadir = DB.participants.filter(
+          (p) => p.status === "attended",
+        ).length;
+        const belum = total - hadir;
+        const pct = total ? Math.round((hadir / total) * 100) : 0;
+
+        document.getElementById("absensiStats").innerHTML = `
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;">
+              <div style="padding:14px 10px;background:var(--sand);border-radius:10px;text-align:center;border:1.5px solid var(--sand3);">
+                <div style="font-size:1.6rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);line-height:1;">${total}</div>
+                <div style="font-size:.67rem;color:var(--ink4);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;">Total</div>
+              </div>
+              <div style="padding:14px 10px;background:var(--lime-lt);border-radius:10px;text-align:center;border:1.5px solid var(--lime-bd);">
+                <div style="font-size:1.6rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;color:var(--lime);line-height:1;">${hadir}</div>
+                <div style="font-size:.67rem;color:#365314;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;">Hadir</div>
+              </div>
+              <div style="padding:14px 10px;background:var(--amber-lt);border-radius:10px;text-align:center;border:1.5px solid #fde68a;">
+                <div style="font-size:1.6rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;color:var(--amber);line-height:1;">${belum}</div>
+                <div style="font-size:.67rem;color:#78350f;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;">Belum</div>
+              </div>
+            </div>
+            <div style="background:var(--sand2);border-radius:99px;height:7px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:var(--lime);border-radius:99px;transition:width .6s ease;"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:5px;">
+              <div style="font-size:.72rem;color:var(--ink4);">${hadir} dari ${total} peserta hadir</div>
+              <div style="font-size:.72rem;font-weight:700;color:${pct >= 80 ? "var(--lime)" : pct >= 50 ? "var(--amber)" : "var(--coral)"};">${pct}%</div>
+            </div>`;
+      }
+
+      function renderAbsensiTable() {
+        const body = document.getElementById("absensiBody");
+        if (!body) return;
+
+        const search = (
+          document.getElementById("absensiSearch")?.value || ""
+        ).toLowerCase();
+        const evFilter =
+          document.getElementById("absensiEvFilter")?.value || "";
+
+        const filtered = DB.participants.filter((p) => {
+          const matchSearch =
+            !search ||
+            (p.name || "").toLowerCase().includes(search) ||
+            (p.email || "").toLowerCase().includes(search) ||
+            (p.booking_code || "").toLowerCase().includes(search);
+          const matchEv = !evFilter || String(p.event_id) === String(evFilter);
+          return matchSearch && matchEv;
+        });
+
+        if (!filtered.length) {
+          body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--ink4);font-size:.84rem;">
+              ${DB.participants.length ? "Tidak ada peserta yang cocok." : "Belum ada peserta terdaftar."}
+            </td></tr>`;
+          return;
+        }
+
+        body.innerHTML = filtered
+          .map((p, i) => {
+            const isHadir = p.status === "attended";
+            const statusBadge = isHadir
+              ? `<span class="chip ch-lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:10px;height:10px;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Hadir</span>`
+              : `<span class="chip ch-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:10px;height:10px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Belum</span>`;
+
+            const aksiBtn = isHadir
+              ? `<button onclick="toggleAbsensi(${p.id},'registered')" style="display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:7px;border:1.5px solid #fecdd3;background:var(--rose-lt);color:var(--rose);font-size:.76rem;font-weight:600;cursor:pointer;font-family:inherit;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:11px;height:11px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Batalkan
+                 </button>`
+              : `<button onclick="toggleAbsensi(${p.id},'attended')" style="display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:7px;border:none;background:var(--ink);color:#fff;font-size:.76rem;font-weight:600;cursor:pointer;font-family:inherit;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:11px;height:11px;"><polyline points="20 6 9 17 4 12"/></svg>Tandai Hadir
+                 </button>`;
+
+            return `
+              <tr>
+                <td style="color:var(--ink4);font-size:.8rem;">${i + 1}</td>
+                <td>
+                  <div style="font-weight:600;font-size:.88rem;">${p.name || "—"}</div>
+                  <div style="font-size:.74rem;color:var(--ink4);margin-top:1px;">${p.email || ""}</div>
+                </td>
+                <td style="font-size:.84rem;">${p.event_name || "—"}</td>
+                <td><code style="font-size:.78rem;font-weight:700;color:var(--ink);background:var(--sand);padding:3px 8px;border-radius:6px;border:1.5px solid var(--sand3);letter-spacing:.04em;">${p.booking_code || "—"}</code></td>
+                <td>${statusBadge}</td>
+                <td>${aksiBtn}</td>
+              </tr>`;
+          })
+          .join("");
+      }
+
+      async function toggleAbsensi(id, newStatus) {
+        const token = localStorage.getItem("token");
+        try {
+          const res = await fetch(
+            `http://localhost:5000/api/participants/${id}/status`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+              body: JSON.stringify({ status: newStatus }),
+            },
+          );
+
+          if (!res.ok) {
+            const d = await res.json();
+            toast(d.message || "Gagal update status", "error");
+            return;
+          }
+
+          // Update lokal tanpa refetch
+          const p = DB.participants.find((x) => x.id === id);
+          if (p) p.status = newStatus;
+
+          renderAbsensiTable();
+          renderAbsensiStats();
+          renderDashboard();
+
+          toast(
+            newStatus === "attended"
+              ? "✓ Peserta ditandai hadir!"
+              : "Status direset.",
+          );
+        } catch {
+          toast("Koneksi gagal.", "error");
+        }
+      }
+
+      async function processAbsensi() {
+        const input = document.getElementById("scanInput");
+        const resultEl = document.getElementById("scanResult");
+        const code = (input?.value || "").trim().toUpperCase();
+
+        if (!code) {
+          toast("Masukkan kode tiket dulu", "error");
+          return;
+        }
+
+        // Cari di data lokal dulu
+        const p = DB.participants.find(
+          (x) => (x.booking_code || "").toUpperCase() === code,
+        );
+
+        if (!p) {
+          resultEl.style.display = "block";
+          resultEl.innerHTML = `
+              <div style="background:var(--rose-lt);border:1.5px solid #fecdd3;border-radius:9px;padding:12px 14px;font-size:.84rem;color:var(--rose);">
+                ❌ Kode tiket <strong>${code}</strong> tidak ditemukan.
+              </div>`;
+          return;
+        }
+
+        if (p.status === "attended") {
+          resultEl.style.display = "block";
+          resultEl.innerHTML = `
+              <div style="background:var(--amber-lt);border:1.5px solid #fde68a;border-radius:9px;padding:12px 14px;font-size:.84rem;color:var(--amber);">
+                ⚠️ <strong>${p.name}</strong> sudah tercatat hadir sebelumnya.
+              </div>`;
+          return;
+        }
+
+        // Mark hadir
+        await toggleAbsensi(p.id, "attended");
+
+        resultEl.style.display = "block";
+        resultEl.innerHTML = `
+            <div style="background:var(--lime-lt);border:1.5px solid var(--lime-bd);border-radius:9px;padding:12px 14px;font-size:.84rem;color:#365314;">
+              ✅ <strong>${p.name}</strong> — ${p.event_name} berhasil diabsen!
+            </div>`;
+
+        // Highlight baris di tabel
+        setTimeout(() => {
+          const rows = document.querySelectorAll("#absensiBody tr");
+          rows.forEach((r) => (r.style.background = ""));
+        }, 2000);
+
+        input.value = "";
+        input.focus();
+      }
+
+      // ═══════════════════════════════════════════
+      // RATING & FEEDBACK (admin — read only)
+      // ═══════════════════════════════════════════
+      let adminFeedbackData = [];
+
+      async function loadAdminFeedback() {
+        const token = localStorage.getItem("token");
+        const evFilter =
+          document.getElementById("adminFbEvFilter")?.value || "";
+
+        try {
+          const url = evFilter
+            ? `http://localhost:5000/api/feedback?event_id=${evFilter}`
+            : "http://localhost:5000/api/feedback";
+
+          const res = await fetch(url, {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (!res.ok) throw new Error("Status " + res.status);
+          adminFeedbackData = await res.json();
+
+          // Populate event filter dropdown sekali
+          const sel = document.getElementById("adminFbEvFilter");
+          if (sel && sel.options.length <= 1) {
+            const seen = new Set();
+            adminFeedbackData.forEach((f) => {
+              if (!seen.has(f.event_id)) {
+                seen.add(f.event_id);
+                const opt = document.createElement("option");
+                opt.value = f.event_id;
+                opt.textContent = f.event_name;
+                sel.appendChild(opt);
+              }
+            });
+          }
+
+          renderAdminStatCards();
+          renderAdminFeedback();
+        } catch (err) {
+          console.error(err);
+          document.getElementById("adminFbList").innerHTML =
+            '<div style="text-align:center;padding:32px;color:var(--ink4);">Gagal memuat ulasan.</div>';
+        }
+      }
+
+      function renderAdminStatCards() {
+        const total = adminFeedbackData.length;
+        if (!total) {
+          document.getElementById("ratingStatCards").innerHTML = "";
+          return;
+        }
+
+        const avg = (
+          adminFeedbackData.reduce((s, f) => s + f.rating, 0) / total
+        ).toFixed(1);
+        const dist = [5, 4, 3, 2, 1].map((n) => ({
+          n,
+          c: adminFeedbackData.filter((f) => f.rating === n).length,
+        }));
+
+        // Group by event
+        const byEvent = {};
+        adminFeedbackData.forEach((f) => {
+          if (!byEvent[f.event_id])
+            byEvent[f.event_id] = { name: f.event_name, ratings: [] };
+          byEvent[f.event_id].ratings.push(f.rating);
+        });
+
+        document.getElementById("ratingStatCards").innerHTML = `
+            <!-- Total ulasan -->
+            <div class="card" style="text-align:center;">
+              <div class="centerText" style="padding: 3vw">
+              <div style="font-size:1.8rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);line-height:1; margin-top:2vh">${total}</div>
+              <div style="font-size:.7rem;color:var(--ink4);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;">Total Ulasan</div>
+            </div>
+                                  <hr>
+
+            <!-- Rata-rata -->
+            <div class="card" style="text-align:center;background:var(--amber-lt);border-color:#fde68a;">
+              <div style="font-size:1.8rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;color:var(--amber);line-height:1;">${avg} ⭐</div>
+                        </div>
+              <div style="font-size:.7rem;color:#78350f;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-top:4px;">Rata-rata Rating</div>
+                      </div>
+
+            <!-- Distribusi bintang -->
+            <div class="card" style="grid-column:span 4;">
+              <div style="font-size:.72rem;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">Distribusi Rating</div>
+              ${dist
+                .map(
+                  (d) => `
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:5px;">
+                  <div style="font-size:.74rem;color:var(--ink4);width:12px;text-align:right;">${d.n}</div>
+                  <div style="flex:1;height:7px;background:var(--sand2);border-radius:99px;overflow:hidden;">
+                    <div style="height:100%;width:${total ? Math.round((d.c / total) * 100) : 0}%;background:var(--amber);border-radius:99px;transition:width .5s;"></div>
+                  </div>
+                  <div style="font-size:.72rem;color:var(--ink4);width:24px;">${d.c}</div>
+                </div>`,
+                )
+                .join("")}
+            </div>`;
+      }
+
+      function renderAdminFeedback() {
+        const sort = document.getElementById("adminFbSort")?.value || "newest";
+        const el = document.getElementById("adminFbList");
+        if (!el) return;
+
+        let data = [...adminFeedbackData];
+        if (sort === "newest")
+          data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        else if (sort === "highest") data.sort((a, b) => b.rating - a.rating);
+        else if (sort === "lowest") data.sort((a, b) => a.rating - b.rating);
+
+        if (!data.length) {
+          el.innerHTML =
+            '<div style="text-align:center;padding:40px;color:var(--ink4);font-size:.84rem;">Belum ada ulasan dari peserta.</div>';
+          return;
+        }
+
+        el.innerHTML = data
+          .map((f) => {
+            const stars = "⭐".repeat(f.rating) + "☆".repeat(5 - f.rating);
+            const tgl = f.created_at
+              ? new Date(f.created_at).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "";
+            return `
+              <div style="display:flex;gap:14px;padding:14px 0;border-bottom:1.5px solid var(--sand2);align-items:flex-start;">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.82rem;flex-shrink:0;">
+                  ${(f.user_name || "?").charAt(0).toUpperCase()}
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                    <span style="font-weight:600;font-size:.88rem;">${f.user_name || "—"}</span>
+                    <span style="font-size:.74rem;color:var(--ink4);">${f.email || ""}</span>
+                    <span style="font-size:.8rem;">${stars}</span>
+                    <span style="font-size:.72rem;color:var(--ink4);margin-left:auto;">${tgl}</span>
+                  </div>
+                  <div style="font-size:.76rem;color:var(--ink4);margin-bottom:5px;">
+                    <span style="background:var(--sand);padding:2px 8px;border-radius:99px;border:1.5px solid var(--sand3);">${f.event_name || "—"}</span>
+                  </div>
+                  <div style="font-size:.84rem;color:var(--ink3);font-style:italic;line-height:1.6;">
+                    "${f.comment || "(Tidak ada komentar)"}"
+                  </div>
+                </div>
+              </div>`;
+          })
+          .join("");
+      }
+
+      // ═══════════════════════════════════════════
+      // SERTIFIKAT
+      // ═══════════════════════════════════════════
+      let selectedCertPart = null;
+
+      async function loadCertificates() {
+        // Kalau data peserta belum ada, fetch dulu
+        if (!DB.participants.length) {
+          try {
+            const token = localStorage.getItem("token");
+            const res = await fetch("http://localhost:5000/api/participants", {
+              headers: { Authorization: "Bearer " + token },
+            });
+            if (res.ok) DB.participants = await res.json();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        // Populate filter event
+        const sel = document.getElementById("certEvFilter");
+        if (sel) {
+          sel.innerHTML = '<option value="">Semua Event</option>';
+          const seen = new Set();
+          DB.participants.forEach((p) => {
+            if (!seen.has(p.event_id)) {
+              seen.add(p.event_id);
+              const opt = document.createElement("option");
+              opt.value = p.event_id;
+              opt.textContent = p.event_name;
+              sel.appendChild(opt);
+            }
+          });
+        }
+
+        renderCertList();
+      }
+
+      function renderCertList() {
+        const evFilter = document.getElementById("certEvFilter")?.value || "";
+
+        // Hanya peserta yang sudah hadir
+        const hadir = DB.participants.filter((p) => {
+          const matchStatus = p.status === "attended";
+          const matchEv = !evFilter || String(p.event_id) === String(evFilter);
+          return matchStatus && matchEv;
+        });
+
+        const list = document.getElementById("certList");
+        if (!list) return;
+
+        if (!hadir.length) {
+          list.innerHTML = `
+              <div style="text-align:center;padding:32px 16px;color:var(--ink4);">
+                <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
+                <div style="font-size:.84rem;">Belum ada peserta yang hadir${evFilter ? " di event ini" : ""}.</div>
+              </div>`;
+          return;
+        }
+
+        list.innerHTML = hadir
+          .map((p) => {
+            const isSelected = selectedCertPart?.id === p.id;
+            return `
+              <div onclick="selectCert(${p.id})" style="
+                display:flex;align-items:center;gap:12px;
+                padding:11px 13px;border-radius:10px;cursor:pointer;
+                border:1.5px solid ${isSelected ? "var(--ink)" : "var(--sand3)"};
+                background:${isSelected ? "var(--sand)" : "var(--white)"};
+                margin-bottom:8px;transition:all .15s;
+              ">
+                <div style="
+                  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+                  background:${isSelected ? "var(--ink)" : "var(--sand2)"};
+                  color:${isSelected ? "#fff" : "var(--ink)"};
+                  display:grid;place-items:center;
+                  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.84rem;
+                ">${(p.name || "?").charAt(0).toUpperCase()}</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-weight:600;font-size:.88rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.name || "—"}</div>
+                  <div style="font-size:.74rem;color:var(--ink4);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.event_name || ""}</div>
+                </div>
+                <span class="chip ch-lime" style="flex-shrink:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:9px;height:9px;"><polyline points="20 6 9 17 4 12"/></svg>
+                  Hadir
+                </span>
+              </div>`;
+          })
+          .join("");
+      }
+
+      function selectCert(partId) {
+        const p = DB.participants.find((x) => x.id === partId);
+        if (!p) return;
+
+        selectedCertPart = p;
+        renderCertList(); // re-render buat update highlight
+
+        // Update preview sertifikat
+        document.getElementById("cName").textContent = p.name || "—";
+        document.getElementById("cEvent").textContent = p.event_name || "—";
+
+        const tgl = p.date || p.registered_at;
+        document.getElementById("cDate").textContent = tgl
+          ? new Date(tgl).toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          : "";
+
+        // QR code dari booking_code
+        const qrWrap = document.getElementById("certQrWrap");
+        const certQrId = document.getElementById("certQrId");
+        if (p.booking_code && typeof QRCode !== "undefined") {
+          qrWrap.style.display = "flex";
+          certQrId.textContent = p.booking_code;
+          const canvas = document.getElementById("certQr");
+          if (canvas) {
+            canvas.innerHTML = "";
+            QRCode.toCanvas(
+              canvas,
+              p.booking_code,
+              { width: 64, margin: 1 },
+              () => {},
+            );
+          }
+        } else {
+          qrWrap.style.display = "none";
+        }
+
+        // Enable tombol download
+        document.getElementById("btnDl").disabled = false;
+      }
+
+      function downloadCert() {
+        if (!selectedCertPart) return;
+
+        const src = document.getElementById("certPreviewBox");
+        if (!src) return;
+
+        const certCSS = `
+            @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+            *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+            :root{--sand:#f7f3ec;--sand3:#ddd7cc;--ink:#1c1917;--ink3:#78716c;--ink4:#a8a29e;--lime:#65a30d;--lime-lt:#f0fde4;--lime-bd:#bef264;--sky:#0284c7;--coral:#ea580c;}
+            @page{size:A4 landscape;margin:16mm;}
+            body{background:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:'Instrument Sans',sans-serif;}
+            .cert-preview{position:relative;text-align:center;border:2px solid var(--ink);border-radius:16px;padding:44px 52px;width:100%;max-width:640px;background:#fff;}
+            .cert-preview::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--lime),var(--sky),var(--coral));border-radius:16px 16px 0 0;}
+            .cert-corner{position:absolute;width:40px;height:40px;border:1.5px solid var(--sand3);}
+            .cert-corner.tl{top:12px;left:12px;border-right:none;border-bottom:none;border-radius:4px 0 0 0;}
+            .cert-corner.tr{top:12px;right:12px;border-left:none;border-bottom:none;border-radius:0 4px 0 0;}
+            .cert-corner.bl{bottom:12px;left:12px;border-right:none;border-top:none;border-radius:0 0 0 4px;}
+            .cert-corner.br{bottom:12px;right:12px;border-left:none;border-top:none;border-radius:0 0 4px 0;}
+            .cert-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink4);margin-bottom:16px;}
+            .cert-heading{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--ink4);}
+            .cert-divider{width:36px;height:2px;background:var(--lime);border-radius:99px;margin:12px auto;}
+            .cert-presented{font-size:.82rem;color:var(--ink3);font-style:italic;margin-bottom:8px;}
+            .cert-name{font-family:'Bricolage Grotesque',sans-serif;font-size:2rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:10px;line-height:1.15;}
+            .cert-sub{font-size:.8rem;color:var(--ink3);}
+            .cert-event{font-size:.92rem;font-weight:600;color:var(--ink);margin-top:4px;}
+            .cert-date{font-size:.74rem;color:var(--ink4);margin-top:4px;}
+            .cert-seal{margin-top:20px;font-size:.68rem;color:var(--ink4);font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;}
+            .cert-seal::before,.cert-seal::after{content:'';width:22px;height:1px;background:var(--sand3);}
+            #certQrWrap{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:14px;}
+            #certQrId{font-size:.6rem;color:var(--ink4);letter-spacing:.06em;}
+          `;
+
+        const win = window.open("", "_blank", "width=960,height=680");
+        if (!win) {
+          toast("Izinkan popup untuk cetak sertifikat", "error");
+          return;
+        }
+
+        const scriptTag = "<" + "script" + ">";
+        const scriptClose = "<" + "/" + "script" + ">";
+        const autoprint =
+          scriptTag +
+          "window.onload=function(){setTimeout(function(){window.print();window.onafterprint=function(){window.close();};},500);};" +
+          scriptClose;
+
+        const html =
+          "<!DOCTYPE html><html><head>" +
+          '<meta charset="UTF-8">' +
+          "<title>Sertifikat \u2014 " +
+          selectedCertPart.name +
+          "</title>" +
+          "<style>" +
+          certCSS +
+          "</style>" +
+          "</head><body>" +
+          src.outerHTML +
+          autoprint +
+          "<" +
+          "/body><" +
+          "/html>";
+
+        win.document.write(html);
+        win.document.close();
+      }
+
+      // ═══════════════════════════════════════════
+      // NAVIGATION
+      // ═══════════════════════════════════════════
+      function navigate(page, el) {
+        // hapus active semua menu
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+
+        // active menu yang dipilih
+        if (el) {
+          el.classList.add("active");
+        }
+
+        // hide semua page
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+
+        // show page tujuan
+        const target = document.getElementById("page-" + page);
+
+        if (target) {
+          target.classList.add("active");
+        }
+
+        // ganti title topbar
+        const titleMap = {
+          dashboard: "Dashboard",
+          events: "Event & Sesi",
+          booking: "Pemesanan",
+          participants: "Peserta",
+          absensi: "Absensi ",
+          rating: "Rating & Feedback",
+          certificates: "Sertifikat",
+        };
+
+        document.getElementById("topbarTitle").textContent =
+          titleMap[page] || "Dashboard";
+
+        // Load data sesuai halaman
+        if (page === "participants") loadParticipants();
+        if (page === "absensi") loadAbsensi();
+        if (page === "certificates") loadCertificates();
+        if (page === "rating") loadAdminFeedback();
+
+        closeSidebar();
+      }
+
+      // ═══════════════════════════════════════════
+      // SIDEBAR MOBILE
+      // ═══════════════════════════════════════════
+      function openSidebar() {
+        document.getElementById("sidebar").classList.add("open");
+
+        document.getElementById("sbOverlay").classList.add("show");
+      }
+
+      function closeSidebar() {
+        document.getElementById("sidebar").classList.remove("open");
+
+        document.getElementById("sbOverlay").classList.remove("show");
+      }
+
+      // ═══════════════════════════════════════════
+      // ADD SESSION
+      // ═══════════════════════════════════════════
+      async function addSession() {
+        const token = localStorage.getItem("token");
+
+        const eventId = document.getElementById("inSessEvId").value;
+
+        const title = document.getElementById("inSessName").value;
+
+        const sessionDate = document.getElementById("inSessDate").value;
+
+        const sessionTime = document.getElementById("inSessTime").value;
+
+        const speaker = document.getElementById("inSessSpk").value;
+
+        const capacity = document.getElementById("inSessCap").value;
+
+        if (!title) {
+          toast("Nama sesi wajib diisi", "error");
+          return;
+        }
+
+        try {
+          const res = await fetch("http://localhost:5000/api/sessions", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+
+            body: JSON.stringify({
+              event_id: eventId,
+              title,
+              session_date: sessionDate,
+              session_time: sessionTime,
+              speaker,
+              capacity,
+            }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            toast(data.message, "error");
+            return;
+          }
+
+          toast("Sesi berhasil dibuat");
+
+          closeModal("mAddSess");
+
+          loadEvents();
+        } catch (err) {
+          console.log(err);
+
+          toast("Server error", "error");
+        }
+      }
+
+      async function deleteSession(id) {
+        showConfirm(
+          "Hapus Sesi",
+          "Sesi ini akan dihapus permanen. Yakin?",
+          async () => {
+            const token = localStorage.getItem("token");
+            const res = await fetch(
+              `http://localhost:5000/api/sessions/${id}`,
+              {
+                method: "DELETE",
+                headers: { Authorization: "Bearer " + token },
+              },
+            );
+            const data = await res.json();
+            if (!res.ok) {
+              toast(data.message || "Gagal hapus sesi", "error");
+              return;
+            }
+            toast("Sesi berhasil dihapus");
+            loadEvents();
+          },
+        );
+      }
+    </script>
+  </body>
+</html>

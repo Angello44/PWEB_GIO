@@ -1,0 +1,260 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <title>WORKSNESIA</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="CSS/login.css" />
+  </head>
+  <body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="wrapper">
+      <div class="panel">
+        <!-- Brand -->
+        <div class="brand">
+          <div class="brand-mark">
+            <img src="assets/logo1.png" alt="logo" />
+          </div>
+
+          <div class="brand-name">WORKSNESIA</div>
+        </div>
+
+        <!-- Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="eyebrow">Selamat Datang</div>
+            <h1>Udah Siap Ikut Event?</h1>
+            <p>Login dulu biar nggak ketinggalan event.</p>
+          </div>
+
+          <hr class="sep" />
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Alamat Email</label>
+            <div class="input-wrap">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 7 10-7" />
+              </svg>
+              <input
+                type="email"
+                id="email"
+                placeholder="kamu@email.com"
+                autocomplete="email"
+                oninput="clearErr('email')"
+              />
+            </div>
+            <div class="field-hint" id="hint-email">
+              Email tidak boleh kosong.
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <input
+                type="password"
+                id="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                oninput="clearErr('password')"
+              />
+              <button
+                class="toggle-pw"
+                type="button"
+                onclick="togglePw()"
+                title="Tampilkan/sembunyikan password"
+              >
+                <svg
+                  id="eyeIcon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <div class="field-hint" id="hint-password">
+              Password tidak boleh kosong.
+            </div>
+          </div>
+
+          <!-- Extras -->
+          <div class="form-extras">
+            <label class="remember">
+              <input type="checkbox" id="remember" /> Ingat saya
+            </label>
+            <a href="#" class="forgot">Lupa password?</a>
+          </div>
+
+          <!-- Button -->
+          <button class="btn-login" id="loginBtn" onclick="login()">
+            <div class="spinner"></div>
+            <span class="btn-text">Masuk Sekarang</span>
+            <svg
+              class="btn-ico"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <div class="card-footer">
+            Belum punya akun? <a href="register.html">Daftar di sini</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script>
+      // Toast
+      function showToast(msg, type = "success") {
+        const t = document.getElementById("toast");
+        t.textContent = (type === "success" ? "✓ " : "✕ ") + msg;
+        t.className = "show " + type;
+
+        clearTimeout(t._timer);
+
+        t._timer = setTimeout(() => {
+          t.className = "";
+        }, 3000);
+      }
+
+      // Clear error
+      function clearErr(field) {
+        document.getElementById(field).classList.remove("error");
+        document.getElementById("hint-" + field).classList.remove("show");
+      }
+
+      // Toggle Password
+      function togglePw() {
+        const input = document.getElementById("password");
+
+        if (input.type === "password") {
+          input.type = "text";
+        } else {
+          input.type = "password";
+        }
+      }
+
+      // Enter
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          login();
+        }
+      });
+
+      // LOGIN
+      async function login() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const btn = document.getElementById("loginBtn");
+
+        let valid = true;
+
+        // VALIDASI
+        if (!email) {
+          document.getElementById("email").classList.add("error");
+          document.getElementById("hint-email").classList.add("show");
+          valid = false;
+        }
+
+        if (!password) {
+          document.getElementById("password").classList.add("error");
+          document.getElementById("hint-password").classList.add("show");
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        btn.classList.add("loading");
+
+        try {
+          const res = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              password,
+            }),
+          });
+
+          const data = await res.json();
+
+          console.log("LOGIN:", data);
+
+          // kalau gagal
+          if (!res.ok) {
+            throw new Error(data.message || "Login gagal");
+          }
+
+          // simpan token
+          localStorage.setItem("token", data.token);
+
+          // simpan user
+          localStorage.setItem("user", JSON.stringify(data.user));
+
+          // simpan role
+          localStorage.setItem("role_id", data.user.role_id);
+
+          console.log("TOKEN:", localStorage.getItem("token"));
+
+          showToast("Login berhasil!");
+
+          setTimeout(() => {
+            // ROLE ADMIN / SUPERADMIN
+            if (data.user.role_id == 1) {
+              window.location.href = "dashboard.html";
+            }
+
+            // ROLE PESERTA
+            else {
+              window.location.href = "index.html";
+            }
+          }, 1000);
+        } catch (err) {
+          console.log(err);
+
+          showToast(err.message || "Server error", "error");
+
+          btn.classList.remove("loading");
+        }
+      }
+    </script>
+  </body>
+</html>
+
+
